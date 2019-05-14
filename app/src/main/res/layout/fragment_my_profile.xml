@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyProfileFragment"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:id="@+id/profile_pic_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/circle">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/profile_picture" />
+
+        <RelativeLayout
+            android:id="@+id/camera_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/white_circle"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/iv_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_photo_camera"/>
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:layout_margin="10dp"
+        android:text="Your name"
+        android:inputType="text"
+        android:gravity="center"
+        android:layout_below="@id/profile_pic_box"
+        android:textCursorDrawable="@drawable/cursor"
+        android:drawableLeft="@drawable/ic_name"
+        android:focusable="false"
+        android:drawableRight="@drawable/ic_pencil_black_tool_interface_symbol"/>
+
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:layout_margin="10dp"
+        android:text="Your phone number"
+        android:inputType="phone"
+        android:gravity="center"
+        android:layout_below="@id/full_name"
+        android:textCursorDrawable="@drawable/cursor"
+        android:drawableLeft="@drawable/ic_phone_call"
+        android:focusable="false"
+        android:drawableRight="@drawable/ic_pencil_black_tool_interface_symbol"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:layout_margin="10dp"
+        android:text="password"
+        android:inputType="textPassword"
+        android:gravity="center"
+        android:layout_below="@id/phone_number"
+        android:textCursorDrawable="@drawable/cursor"
+        android:drawableLeft="@drawable/ic_lock"
+        android:focusable="false"
+        android:drawableRight="@drawable/ic_pencil_black_tool_interface_symbol"/>
+
+
+</RelativeLayout>

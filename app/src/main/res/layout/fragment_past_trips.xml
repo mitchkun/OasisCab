@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PastTrips"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/past_trips_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/past_trips_strings"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/past_trips_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/past_trips_title"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

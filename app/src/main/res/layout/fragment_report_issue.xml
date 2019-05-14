@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReportIssue"
+    android:padding="10dp"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/report_issue_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/report_issue_string"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/lost_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lost_item_string"
+        android:drawableRight="@drawable/ic_arrows"
+        android:textSize="16sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/report_issue_title"/>
+
+    <TextView
+        android:id="@+id/bad_driver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bad_driver_string"
+        android:drawableRight="@drawable/ic_arrows"
+        android:textSize="16sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/lost_item"/>
+
+    <TextView
+        android:id="@+id/bad_condition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ride_bad_condition_string"
+        android:drawableRight="@drawable/ic_arrows"
+        android:textSize="16sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/bad_driver"/>
+
+    <TextView
+        android:id="@+id/never_came"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/come_after_approval_string"
+        android:drawableRight="@drawable/ic_arrows"
+        android:textSize="16sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/bad_condition"/>
+
+    <TextView
+        android:id="@+id/other_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/other_reason_string"
+        android:drawableRight="@drawable/ic_arrows"
+        android:textSize="16sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/never_came"/>
+
+</RelativeLayout>

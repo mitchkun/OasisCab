@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".DriversProfile"
+    tools:showIn="@layout/activity_drivers_profile"
+    android:background="@color/oasis_cab"
+    android:padding="20dp">
+
+    <FrameLayout
+        android:id="@+id/profile_pic_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@drawable/circle"
+        android:layout_centerHorizontal="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/profile_picture" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/driver_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="@string/nav_header_title"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/profile_pic_box"/>
+
+    <RatingBar
+        android:id="@+id/rtbHighScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:max="5"
+        android:numStars="5"
+        android:rating="0.0"
+        android:stepSize="0.0"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/driver_name"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:isIndicator="true"
+        android:theme="@style/RatingBar"/>
+
+    <TextView
+        android:id="@+id/driver_car_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/driver_car_label"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:maxLines="10"
+        android:layout_below="@id/rtbHighScore"/>
+
+    <TextView
+        android:id="@+id/driver_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text=" Honda"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:maxLines="10"
+        android:layout_below="@id/rtbHighScore"
+        android:layout_toRightOf="@id/driver_car_label"
+        android:layout_toEndOf="@id/driver_car_label" />
+
+    <View
+        android:id="@+id/view_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_below="@id/driver_car"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/driver_car_colour_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/driver_car_colour_label"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:maxLines="10"
+        android:layout_below="@id/view_1"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/driver_car_colour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text=" Blue"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:maxLines="10"
+        android:layout_below="@id/view_1"
+        android:layout_toRightOf="@id/driver_car_colour_label"
+        android:layout_toEndOf="@id/driver_car_colour_label"
+        android:layout_marginTop="20dp"/>
+
+    <View
+        android:id="@+id/view_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_below="@id/driver_car_colour"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/driver_car_n_plate_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/driver_car_n_plate_label"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:maxLines="10"
+        android:layout_below="@id/view_2"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/driver_car_n_plate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text=" ESD 342 MB"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:maxLines="10"
+        android:layout_below="@id/view_2"
+        android:layout_toRightOf="@id/driver_car_n_plate_label"
+        android:layout_toEndOf="@id/driver_car_n_plate_label"
+        android:layout_marginTop="20dp"/>
+
+    <View
+        android:id="@+id/view_3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_below="@id/driver_car_n_plate"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/cel_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/driver_cel_label"
+        android:textSize="14sp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/view_3"/>
+
+    <TextView
+        android:id="@+id/cel_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text=" (+268) 76872520"
+        android:textSize="14sp"
+        android:layout_toRightOf="@id/cel_label"
+        android:layout_toEndOf="@id/cel_label"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/view_3"/>
+
+    <ImageView
+        android:id="@+id/call_driver_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_phone_white"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/cel_number"
+        android:layout_below="@id/view_3"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/cel_number"
+        android:background="@color/black"
+        android:padding="5dp"/>
+</RelativeLayout>

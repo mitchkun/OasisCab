@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">OasisCab</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Your full name</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- login screen strings -->
+    <string name="phone_number_hint_string">Phone Number</string>
+    <string name="email_address_hint_string">Email</string>
+    <string name="password_hint_string">Password</string>
+    <string name="login_string">Login</string>
+    <string name="dont_have_account_string">You don\'t have an account? <u>Sign up</u></string>
+    <string name="sign_up_string">Sign up</string>
+    <string name="forgot_password_string">Forgot password?</string>
+
+    <!-- sign up strings-->
+    <string name="full_name_hint_string">Full name</string>
+    <string name="confirm_password_hint_string">Confirm password</string>
+
+    <!-- navigation drawer strings-->
+    <string name="home_string">Home</string>
+    <string name="profile_string">Profile</string>
+    <string name="favourite_location_string">Favourite Location</string>
+    <string name="past_trips_strings">Past Trips</string>
+    <string name="report_issue_string">Report Issue</string>
+    <string name="settings_string">Settings</string>
+    <string name="help_and_support_string">Help &amp; Support</string>
+
+
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+
+    <!-- Favourite location screen strings-->
+    <string name="name_significance_hint_string">Name/Significance</string>
+    <string name="type_add_location_hint_string">Type to add location</string>
+    <string name="add_string">Add</string>
+    <string name="select_on_map_string">Click to select on map</string>
+
+    <!-- Past trips screen strings-->
+    <string name="rate_driver_string">Rate driver</string>
+    <string name="complain_string">Complain</string>
+    <string name="driver_profile_string">Driver profile</string>
+
+    <!-- DRiver profile strings-->
+    <string name="driver_car_label">Car: </string>
+    <string name="driver_car_colour_label">Colour: </string>
+    <string name="driver_car_n_plate_label">N.plate: </string>
+    <string name="driver_cel_label">Cel: </string>
+
+    <!-- Report Issue/Complain strings-->
+    <string name="lost_item_string">I lost an item</string>
+    <string name="bad_driver_string">Bad driver</string>
+    <string name="ride_bad_condition_string">Ride was in a bad condition</string>
+    <string name="come_after_approval_string">Driver never came after approval</string>
+    <string name="other_reason_string">Other reason</string>
+
+    <!-- help & support strings -->
+    <string name="safety_tips_string">Safety tips</string>
+    <string name="lost_item_policy_string">Lost item policy</string>
+    <string name="privacy_policy_string">Privacy policy</string>
+    <string name="contact_us_string">Contact us</string>
+
+    <string name="default_pick_up_loc_string">Select pick up location</string>
+    <string name="default_drop_off_loc_string">Select drop off location</string>
+    <string name="estimate_fee_string">Estimated fee: 40</string>
+
+    <!-- Welcome screen strings -->
+    <string name="welcome_title_string">Welcome to OasisCab</string>
+    <string name="welcome_message_string">The socially responsible way\nto ride. Push a button and a\nfew minutes later a ride comes\nto take you to your requested\ndestination.\n\nIt\'s that simple.</string>
+
+
+    <!-- Terms and conditions strings-->
+    <string name="terms_and_conditions_title_string">PLEASE READ THIS CAREFULLY</string>
+    <string name="terms_and_conditions_string">Lorem ipsum dolor sit amet, consectetuer
+        adipiscing elit, sed diam nonummy nibh
+        euismod tincidunt ut laoreet dolore magna
+        aliquam erat volutpat. Ut wisi enim ad minim
+        veniam, quis nostrud exerci tation ullamcorper
+        suscipit lobortis nisl ut aliquip ex ea commodo
+        consequat. Duis autem vel eum iriure dolor in
+        hendrerit in vulputate velit esse molestie
+        consequat, vel illum dolore eu feugiat nulla
+        facilisis at vero eros et accumsan et iusto odio
+        dignissim qui blandit praesent luptatum zzril
+        delenit augue duis dolore te feugait nulla
+        facilisi.
+        Lorem ipsum dolor sit amet, cons ectetue</string>
+    <string name="i_agree_string">I agree to the Term &amp; Conditions</string>
+
+    <!--Request ride strings-->
+    <string name="request_ride_type_title">CHOOSE TYPE OF CAR</string>
+    <string name="sedan_string"><b>Sedan</b></string>
+    <string name="mini_van_string"><b>Mini Van</b>\n7 seater</string>
+    <string name="kombi_string"><b>Kombi</b>\n15 seater</string>
+    <string name="pick_drop_location_title">FROM WHERE? TO WHERE?</string>
+    <string name="current_location_string">Your current location</string>
+    <string name="select_from_fav_string">Select from favourite</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_drivers_profile">DriversProfile</string>
+    <string name="title_activity_request_ride">RequestRide</string>
+
+
+</resources>

@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "789661249231",
+    "firebase_url": "https://youngmind-location.firebaseio.com",
+    "project_id": "youngmind-location",
+    "storage_bucket": "youngmind-location.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789661249231:android:75a373297198f3b4",
+        "android_client_info": {
+          "package_name": "com.example.oasiscab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789661249231-39990kdq45iai3g08cq7j4tpa3luae6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtcCLXuQ2PuHK8c0CaLQP5_V5U9_2ui7g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789661249231:android:9163cd2035994830",
+        "android_client_info": {
+          "package_name": "io.youngmind.oasis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789661249231-39990kdq45iai3g08cq7j4tpa3luae6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtcCLXuQ2PuHK8c0CaLQP5_V5U9_2ui7g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
