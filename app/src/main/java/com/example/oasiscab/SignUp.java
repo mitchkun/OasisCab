@@ -29,6 +29,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.*;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firestore.v1.WriteResult;
@@ -42,26 +44,30 @@ public class SignUp extends AppCompatActivity {
 //    local variable declarations
     private static final int SELECT_PICTURE = 100;
     private static final String TAG = "SignUp";
-    public EditText emailId, passwd, name;
+    public EditText emailId, passwd, name, phone;
     Button btnSignUp;
     TextView signIn;
     FirebaseAuth firebaseAuth;
-    FirebaseFirestore db;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         firebaseAuth = FirebaseAuth.getInstance();
-        emailId = findViewById(R.id.phone_number);
+        name = findViewById(R.id.full_name);
+        emailId = findViewById(R.id.email);
+        phone = findViewById(R.id.phone_number);
         passwd = findViewById(R.id.confirm_password);
         btnSignUp = findViewById(R.id.login_btn);
         signIn = findViewById(R.id.TVSignIn);
-        db = FirebaseFirestore.getInstance();
+        //db = FirebaseFirestore.getInstance();
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailID = emailId.getText().toString();
+                final String emailID = emailId.getText().toString();
                 String paswd = passwd.getText().toString();
                 if (emailID.isEmpty()) {
                     emailId.setError("Provide your Email first!");
@@ -75,19 +81,17 @@ public class SignUp extends AppCompatActivity {
                     firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(SignUp.this, new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            User  user1 =  new User(user.getUid(),user.getEmail(),"",name.getText().toString());
-                            DocumentReference docRef = db.collection("users").document(user1.getUid());
-                            Map<String, Object> data = new HashMap<>();
-                            data.put("Full Name", user1.getIName());
-                            data.put("Email", user1.getUsername());
-                            data.put("photoURL", user1.getUrlPicture());
-                            docRef.set(data);
+                            FirebaseUser user =  firebaseAuth.getCurrentUser();
+                            String userId = user.getUid();
+                            myRef = database.getReference("users");
                             if (!task.isSuccessful()) {
                                 Toast.makeText(SignUp.this.getApplicationContext(),
                                         "SignUp unsuccessful: " + task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             } else {
+                                myRef.child(userId).child("email").setValue(emailID);
+                                myRef.child(userId).child("name").setValue(name);
+                                myRef.child(userId).child("phone").setValue(phone);
                                 startActivity(new Intent(SignUp.this, AgreeTerms.class));
                                 overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
                             }

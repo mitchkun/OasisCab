@@ -15,12 +15,14 @@ import android.view.MenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 //    local variable declaration
     Button btnLogOut;
+    TextView Name;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private static final String TAG_HOME = "home";
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.nav_header_main);
+        Name = findViewById(R.id.profile_name);
+        Name.setText("Text Changed");
         setContentView(R.layout.activity_main);
         btnLogOut = (Button) findViewById(R.id.btnLogOut);
 //        btnLogOut.setOnClickListener(new View.OnClickListener() {

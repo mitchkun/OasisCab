@@ -27,7 +27,7 @@ public class AgreeTerms extends AppCompatActivity {
 
     public void intentToMainScreen(){
 
-        Intent intent  = new Intent(this,Login.class);
+        Intent intent  = new Intent(this,MainActivity.class);
         finish();
         startActivity(intent);
 
