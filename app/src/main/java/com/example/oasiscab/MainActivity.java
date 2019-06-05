@@ -2,8 +2,10 @@ package com.example.oasiscab;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,10 +14,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
+
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,7 +43,9 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG_REPORT_ISSUE = "reportIssue";
     private static final String TAG_SETTINGS = "settings";
     private static final String TAG_HELP_AND_SUPPORT = "helpAndSupport";
+    private static final String TAG_LOG_OUT = "LOGOUT";
     public static String CURRENT_TAG = TAG_HOME;
+    private static final String TAG = "FirebaseIDService";
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
@@ -46,8 +59,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_header_main);
-        Name = findViewById(R.id.profile_name);
+        Name = findViewById(R.id.profile_name_main);
         Name.setText("Text Changed");
+        //findViewById(R.id.profile_name) = Name;
+
         setContentView(R.layout.activity_main);
         btnLogOut = (Button) findViewById(R.id.btnLogOut);
 //        btnLogOut.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +92,37 @@ public class MainActivity extends AppCompatActivity
 
         // initializing navigation menu
         setUpNavigationView();
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        //String msg = getString(getResources().getString(R.string.msg_token_fmt), token);
+                        //Log.d(TAG, msg);
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                    }
+                    //@Override
+                    //public void onNewToken(String token) {
+                     //   Log.d(TAG, "Refreshed token: " + token);
+
+                        // If you want to send messages to this application instance or
+                        // manage this apps subscriptions on the server side, send the
+                        // Instance ID token to your app server.
+                        //sendRegistrationToServer(token);
+                    //}
+                });
+
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
 
         if (savedInstanceState == null) {
             navItemIndex = 0;
@@ -210,10 +256,17 @@ public class MainActivity extends AppCompatActivity
 
                 return helpAndSupport;
 
+            case 7:
+                FirebaseAuth.getInstance().signOut();
+                Intent I = new Intent(MainActivity.this, Login.class);
+                startActivity(I);
+
             default:
                 return new Home();
         }
     }
+
+
 
     private void setUpNavigationView() {
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
@@ -253,6 +306,10 @@ public class MainActivity extends AppCompatActivity
                     case R.id.nav_report_issue:
                         navItemIndex = 4;
                         CURRENT_TAG = TAG_REPORT_ISSUE;
+                        break;
+                    case R.id.btnLogOut:
+                        navItemIndex = 7;
+                        CURRENT_TAG = TAG_LOG_OUT;
                         break;
 
                     default:
