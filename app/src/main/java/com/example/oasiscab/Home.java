@@ -169,7 +169,7 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
             public void onClick(View v) {
                 RequestQueue queue = Volley.newRequestQueue(getActivity());
                 // TODO: change url string to our server string
-                String url ="http://13.92.100.73:8000/api/send/";
+                String url ="http://13.92.100.73:8001/api/post-location";
                 //Post Request Function, uses Volley and Request Queue to process
                 //requests as they are cached
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -211,7 +211,7 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
                 queue.add(stringRequest);
 
                 Toast.makeText(getActivity(), "Im clicked", Toast.LENGTH_SHORT).show();
-                intentToRequestRide();
+                //intentToRequestRide();
 
 
             }
