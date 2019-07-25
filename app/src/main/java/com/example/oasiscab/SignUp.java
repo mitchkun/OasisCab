@@ -89,9 +89,9 @@ public class SignUp extends AppCompatActivity {
                                         "SignUp unsuccessful: " + task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             } else {
-                                myRef.child(userId).child("email").setValue(emailID);
-                                myRef.child(userId).child("name").setValue(name);
-                                myRef.child(userId).child("phone").setValue(phone);
+                                myRef.child(userId);//.child("email").setValue(emailID);
+                                //myRef.child(userId).child("name").setValue(name);
+                                //myRef.child(userId).child("phone").setValue(phone);
                                 startActivity(new Intent(SignUp.this, AgreeTerms.class));
                                 overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
                             }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,10 +30,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,6 +53,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickListener,
@@ -56,10 +73,15 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private FusedLocationProviderClient fusedLocationClient;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private LocationCallback locationCallback;
+    //private double lat;
+    //private double lng;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,8 +95,9 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
     private int requestCode;
     private String[] permissions;
     private int[] grantResults;
-
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private TextView estimateFee;
+    private Location mLocation;
 
     private String[] locations;
 
@@ -103,6 +126,20 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    // Update UI with location data
+                    // ...
+                }
+            };
+        };
+
+
         getLocations();
     }
 
@@ -130,9 +167,51 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
         requestRideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                RequestQueue queue = Volley.newRequestQueue(getActivity());
+                // TODO: change url string to our server string
+                String url ="http://13.92.100.73:8001/api/post-location";
+                //Post Request Function, uses Volley and Request Queue to process
+                //requests as they are cached
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                String resp = response.substring(0,100);
+                                //Toasts created for showing request responses. if not necessary, will be removed
+                                Toast.makeText(getActivity(), "Post Response:\n" + resp, Toast.LENGTH_LONG).show();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "UnSuccessful Request\n", Toast.LENGTH_LONG).show();
+                    }
+                }){
+                    @Override
+                    protected Map<String,String> getParams(){
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        Map<String,String> params = new HashMap<String, String>();
+                        //Post Data as strings. Service will however be checking UID every 4 seconds
+                        //Maybe this can be optimized
+                        params.put("UID",user.getUid());
+                        params.put("Long",Double.toString(mLastLocation.getLongitude()));
+                        params.put("Lat", Double.toString(mLastLocation.getLatitude()));
+
+
+                        return params;
+                    }
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("Content-Type","application/x-www-form-urlencoded");
+                        return params;
+                    }
+                };
+                //The requests are put in a Cache queue and processed in line once connected or server response is successful
+                queue.add(stringRequest);
 
                 Toast.makeText(getActivity(), "Im clicked", Toast.LENGTH_SHORT).show();
-                intentToRequestRide();
+                //intentToRequestRide();
 
 
             }
@@ -176,6 +255,7 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -246,6 +326,17 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
 
     }
 
+
+
+    private void startLocationUpdates() {
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, (com.google.android.gms.location.LocationListener) this);
+        }
+    }
+
+
     @Override
     public void onLocationChanged(android.location.Location location) {
 
@@ -263,7 +354,7 @@ public class Home extends Fragment implements GoogleMap.OnMyLocationButtonClickL
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
         //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,11));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
     }
 
 
